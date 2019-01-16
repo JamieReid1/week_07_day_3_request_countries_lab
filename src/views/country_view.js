@@ -32,7 +32,7 @@ CountryView.prototype.renderCountry = function (country) {
 
 CountryView.prototype.createHeading2 = function (country) {
   const countryName = document.createElement('h2');
-  countryName.textContent = `${country.name}, ${country.nativeName}`;
+  countryName.textContent = `${country.name}, \xa0\xa0\xa0${country.nativeName}`;
   return countryName;
 };
 
