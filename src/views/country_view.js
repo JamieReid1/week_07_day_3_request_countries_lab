@@ -32,15 +32,15 @@ CountryView.prototype.renderCountry = function (country) {
 
 CountryView.prototype.createHeading2 = function (country) {
   const countryName = document.createElement('h2');
-  countryName.textContent = country.name;
+  countryName.textContent = `${country.name}, ${country.nativeName}`;
   return countryName;
 };
 
 CountryView.prototype.createImage = function (country) {
   const countryImage = document.createElement('img');
   countryImage.setAttribute('src', country.flag);
-  countryImage.setAttribute('height', 50);
-  countryImage.setAttribute('width', 100);
+  countryImage.setAttribute('height', 170);
+  countryImage.setAttribute('width', 280);
   return countryImage;
 };
 
@@ -64,16 +64,12 @@ CountryView.prototype.createLi = function (textContent, ul) {
 
 CountryView.prototype.languageList = function (country) {
   const unorderedList = document.createElement('ul');
-  const items = country.languages;
-  console.dir(items);
-  for (item of items) {
-    this.createLi(item.name, unorderedList);
+  const languages = country.languages;
+  for (language of languages) {
+    this.createLi(language.name, unorderedList);
   }
   return unorderedList;
 };
-
-
-
 
 
 module.exports = CountryView;
