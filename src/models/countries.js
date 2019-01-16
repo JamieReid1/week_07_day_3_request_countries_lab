@@ -11,7 +11,7 @@ Countries.prototype.getData = function () {
   const request = new RequestHelper('https://restcountries.eu/rest/v2/all');
   request.get((data) => {
     this.text = data;
-    console.dir(this.text);
+    // console.dir(this.text);
     PubSub.publish('Countries:allCountriesData', this.text);
   });
 };
