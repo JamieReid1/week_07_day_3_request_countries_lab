@@ -11,9 +11,16 @@ Countries.prototype.getData = function () {
   const request = new RequestHelper('https://restcountries.eu/rest/v2/all');
   request.get((data) => {
     this.text = data;
-    // console.dir(this.text);
     PubSub.publish('Countries:allCountriesData', this.text);
   });
+  PubSub.subscribe('CountrySelect:change', (event) => {
+    this.displayCountry(event.detail);
+  })
+};
+
+Countries.prototype.displayCountry = function (index) {
+  const selectedCountry = this.text[index];
+  PubSub.publish('Countries:selectedCountry', selectedCountry);
 };
 
 module.exports = Countries;

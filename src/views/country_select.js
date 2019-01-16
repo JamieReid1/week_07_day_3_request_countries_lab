@@ -11,6 +11,10 @@ CountrySelect.prototype.bindEvents = function () {
     const countriesData = event.detail;
     this.populate(countriesData);
   });
+  this.element.addEventListener('change', (event) => {
+    const selectIndex = event.target.value;
+    PubSub.publish('CountrySelect:change', selectIndex);
+  });
 };
 
 CountrySelect.prototype.populate = function (data) {
