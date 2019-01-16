@@ -15,11 +15,25 @@ CountryView.prototype.bindEvents = function () {
 
 CountryView.prototype.renderCountry = function (country) {
   this.element.innerHTML = '';
-  const countryName = document.createElement('h2');
-  countryName.textContent = country.name;
-  this.element.appendChild(countryName);
+  const heading2 = this.createHeading2(country);
+  const image = this.createImage(country);
+  this.element.appendChild(heading2);
+  this.element.appendChild(image);
 };
 
+CountryView.prototype.createHeading2 = function (country) {
+  const countryName = document.createElement('h2');
+  countryName.textContent = country.name;
+  return countryName;
+};
+
+CountryView.prototype.createImage = function (country) {
+  const countryImage = document.createElement('img');
+  countryImage.setAttribute('src', country.flag);
+  countryImage.setAttribute('height', 50);
+  countryImage.setAttribute('width', 100);
+  return countryImage;
+};
 
 
 module.exports = CountryView;
