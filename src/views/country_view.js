@@ -15,10 +15,19 @@ CountryView.prototype.bindEvents = function () {
 
 CountryView.prototype.renderCountry = function (country) {
   this.element.innerHTML = '';
+  console.dir(country);
   const heading2 = this.createHeading2(country);
   const image = this.createImage(country);
+  const headingRegion = this.createHeading3('Region:');
+  const region = this.createRegionP(country);
+  const headingLanguages = this.createHeading3('Languages:');
+  const languages = this.languageList(country);
   this.element.appendChild(heading2);
   this.element.appendChild(image);
+  this.element.appendChild(headingRegion);
+  this.element.appendChild(region);
+  this.element.appendChild(headingLanguages);
+  this.element.appendChild(languages);
 };
 
 CountryView.prototype.createHeading2 = function (country) {
@@ -34,6 +43,37 @@ CountryView.prototype.createImage = function (country) {
   countryImage.setAttribute('width', 100);
   return countryImage;
 };
+
+CountryView.prototype.createHeading3 = function (text) {
+  const countryHeading3 = document.createElement('h3');
+  countryHeading3.textContent = text;
+  return countryHeading3;
+};
+
+CountryView.prototype.createRegionP = function (country) {
+  const countryRegion = document.createElement('p');
+  countryRegion.textContent = country.region;
+  return countryRegion;
+};
+
+CountryView.prototype.createLi = function (textContent, ul) {
+  const listItem = document.createElement('li');
+  listItem.textContent = textContent;
+  ul.appendChild(listItem);
+};
+
+CountryView.prototype.languageList = function (country) {
+  const unorderedList = document.createElement('ul');
+  const items = country.languages;
+  console.dir(items);
+  for (item of items) {
+    this.createLi(item.name, unorderedList);
+  }
+  return unorderedList;
+};
+
+
+
 
 
 module.exports = CountryView;
